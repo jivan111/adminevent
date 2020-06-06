@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            font-family: sans-serif;
+            
+        }
+        .form-container{
+
+            padding: 5px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        form>input,form>select,form>textarea{
+            margin-top: -1px;
+            width: 500px;
+            height: 40px;
+            font-size: 1.1rem;
+        }
+        form>.address{
+            margin-top: 30px;
+            display: grid;
+            width: 100%;
+            grid-template-columns:auto auto;
+            grid-gap: 5px 50px;
+            
+         
+        }
+        form>.address>input{
+            height: 40px;
+            font-size: 1.1rem;
+        }
+     
+
+        form>button{
+            margin:  20px 0;
+            width: 200px;
+            height: 40px;
+            background-color: green;
+            outline: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            border-radius: 2px;
+
+        }
+        .imagefile{
+            border: 2px dotted black;
+            margin: 5px 0;
+            display: grid;
+        }
+      #input_file{
+        width: 300px;
+        height: 200px;
+        border: 1px solid green;
+       position: absolute;
+        opacity: 0;
+        grid-row: 1;
+        grid-column: 1;
+
+      }  
+      span{
+          font-size: 6rem;
+
+          font-weight: 300;
+          transform: translateY(20%);
+          grid-row: 1;
+          grid-column: 1;
+          width: 300px;
+          height: 200px;
+          text-align: center;
+          z-index: -10;
+          color: grey;
+
+      }
+     img{
+          width: 300px;
+          height: 200px;
+          object-fit: contain;
+          grid-row: 1;
+          grid-column: 1;
+      }
+    </style>
+</head>
+<body>
+  <div class="form-container">
+
+      <header>
+         <h1> Event Registeration</h1>
+      </header>
+      <form action="/dashboard" method="post" enctype="multipart/form-data">
+        <div class="imagefile">
+
+            <input type="file" id="input_file"  accept="image/*" name="file">
+            <span>+</span>
+            <img src="" alt="" >
+        </div>
+      <input type="text" placeholder="Event name" name="eventName">
+      <select name="eventCategory" id="">
+          <option value="Webinar">Webinar</option>
+          <option value="Seminar">Seminar</option>
+          <option value="Blood Donation">Blood Donation</option>
+          <option value="Society Meet">Society Meet</option>
+      </select>
+        <textarea type="text" placeholder="Event Description" name="eventDescription">
+        </textarea>   
+        <input type="datetime-local"  name="eventDateTime">
+    <div class="address">
+        <input type="text" placeholder="state" name="state">
+        <input type="text" placeholder="city" name="city">
+        <input type="text"  placeholder="locality" name="locality" id="">
+        <input type="text" placeholder="pincode" name="pincode">
+    </div>
+    <button type="submit">Register Event</button>
+  
+</form>
+</div>
+<script>
+    let input_image=document.getElementById("input_file")
+    const preview_image=document.getElementsByTagName("img")[0]
+    input_image.addEventListener("change",(e)=>{
+        const reader=new FileReader()
+        reader.onload=()=>{
+            preview_image.src=reader.result
+        }
+        reader.readAsDataURL(e.target.files[0])
+    })
+</script>
+</body>
+</html>

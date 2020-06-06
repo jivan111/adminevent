@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+            *{
+            font-family: sans-serif;
+            margin: 0;
+
+        }
+        .nav{
+        
+            box-shadow: 1px 0 8px 1px grey;
+            height: 60px;
+            display: flex;
+            background-color: #f0f0f0;
+            align-items: center;
+            justify-content:flex-end;
+           
+        }
+        nav{
+            display: flex;
+            align-items: center;
+            justify-content: right;
+        }
+        nav>a{
+            padding:10px ;
+            text-decoration: none;
+            font-weight: 300;
+            font-size: 1.2rem;
+            color: green;
+            
+            
+        }
+
+        nav>a.active{
+           color: purple;
+           border-bottom: 1px solid purple;
+        }
+       
+        .placeholder{
+            margin-top: 20px;
+            min-height: 80vh;
+            display: flex;
+            flex-wrap: wrap;
+            /* justify-content: space-between; */
+            
+
+        }
+        .events{
+            width: 280px;
+            margin: 10px 20px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            box-shadow: 1px 0 3px 2px grey;
+            /* height: 300px; */
+        }
+        .events>img{
+            width: 280px;
+            height: 290px;
+            border-radius: 4px;
+            margin:0 0  4px 0;
+        }
+        .events>h2{
+            width: 260px;
+            margin: 5px;
+            padding: 4px;
+        }
+        .events>span{
+            width: 260px;
+            margin: 5px;
+            padding: 4px;
+        }
+        .events>p{
+            width: 260px;
+            margin: 5px;
+            padding: 4px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <nav>
+            <a href="/webinar">Webinar</a>
+            <a href="/seminar">Seminar</a>
+            <a href="/blood_donation">Blood Donation</a>
+            <a href="/meet">Society Meet</a> 
+         </nav>
+    </div>
+    <div class="placeholder">
+        <%if(result){%>
+         <%result.forEach(item=>{ %>
+              <div class="events">
+
+                  <img src="<%=item.fileName%>" alt="">
+                  <h2><%=item.eventName%></h2>
+                  <span><%=item.eventDateTime%></span>  
+                 
+                  <p><strong>Desc:</strong> <%=item.eventDescription%></p>
+                </div>
+           <% }) %>    
+      <% }else{ %>
+        <p>no prob</p>
+      <%}%>
+        <!-- <%=result%> -->
+    </div>
+  
+<script>
+  const nav=document.querySelectorAll("nav>a")
+  console.log(nav)
+  nav.forEach(link=>{
+    
+          
+     
+      console.log(link)
+      location.href.indexOf(link.href)>=0?link.classList.add("active"):null
+      console.log(link.href)
+        setTimeout(()=>{
+        },0)
+     
+
+  })
+
+</script> 
+</body>
+</html>
