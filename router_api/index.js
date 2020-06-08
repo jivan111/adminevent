@@ -33,7 +33,7 @@ const upload=multer({storage})
 router.get("/",(req,res)=>{
    dbmodal.find({},(err,result)=>{
        if(result.length){
-           
+            
             res.render("landingpage",{result})
            
         }else{
@@ -49,6 +49,7 @@ router.get("/dashboard",(req,res)=>{
 
 
 router.get("/webinar",(req,res)=>{
+    console.log("from webinar")
     dbmodal.find({eventCategory:"Webinar"},(err,result)=>{
         if(!err)
             res.render("landingpage",{result})
@@ -61,6 +62,7 @@ router.get("/webinar",(req,res)=>{
 
         
 router.get("/seminar",(req,res)=>{
+    console.log("from seminar")
     dbmodal.find({eventCategory:"Seminar"},(err,result)=>{
         if(!err)
             res.render("landingpage",{result})
@@ -111,11 +113,16 @@ router.post("/dashboard",upload.single("file"),(req,res)=>{
         
     })
 })
-router.get("/:filename",(req,res)=>{
+
+router.get("/images/:filename",(req,res)=>{
+    console.log("yes")
     let fileName=req.params.filename
     gfs.files.find({filename:fileName}).toArray((err,result)=>{
-       let readStream= gfs.createReadStream(result[0].filename)
-       readStream.pipe(res)
+        if(result.length){
+
+            let readStream= gfs.createReadStream(result[0].filename)
+            readStream.pipe(res)
+        }
     })
 })
 module.exports=router
