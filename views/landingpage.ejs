@@ -55,12 +55,11 @@
             background-color: #f0f0f0;
             border-radius: 4px;
             box-shadow: 1px 0 3px 2px grey;
-            /* height: 300px; */
         }
         .events>img{
             width: 280px;
             height: 290px;
-            border-radius: 4px;
+            border-radius: 4px 4px 0 0;
             margin:0 0  4px 0;
         }
         .events>h2{
@@ -80,15 +79,28 @@
             word-wrap: break-word;
         }
         .noevent>h1{
-            
+            --scale:1;
             color: rebeccapurple;
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%) scale(var(--scale));
             font-weight: bold;
+            animation:zoom_in_out 5s ease-in-out   ;
 
         
+        }
+        @keyframes zoom_in_out{
+          0%{
+              --scale:1;
+          }
+          50%{
+              --scale:1.5;
+          }
+          100%{
+              --scale:1;
+          }
+
         }
     </style>
 </head>
