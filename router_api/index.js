@@ -32,14 +32,10 @@ const storage=new GridStorage({
 const upload=multer({storage})
 router.get("/",(req,res)=>{
    dbmodal.find({},(err,result)=>{
-       if(result.length){
+       
             
             res.render("landingpage",{result})
-           
-        }else{
-            res.render("landingpage",{result:null})
-
-       }
+       
    })
   
 })

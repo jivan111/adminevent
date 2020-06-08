@@ -79,6 +79,17 @@
             padding: 4px;
             word-wrap: break-word;
         }
+        .noevent>h1{
+            
+            color: rebeccapurple;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            font-weight: bold;
+
+        
+        }
     </style>
 </head>
 <body>
@@ -91,7 +102,7 @@
          </nav>
     </div>
     <div class="placeholder">
-        <%if(result){%>
+        <%if(result.length){%>
          <%result.forEach(item=>{ %>
               <div class="events">
 
@@ -103,7 +114,10 @@
                 </div>
            <% }) %>    
       <% }else{ %>
-        <p>no prob</p>
+        <div class="noevent">
+
+            <H1>No Event To Show </H1>
+        </div>
       <%}%>
         <!-- <%=result%> -->
     </div>
